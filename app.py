@@ -9,7 +9,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/?'
 db = SQLAlchemy(app)
 
-DATABASE_URL = "sqlite:///database.db"
+import os
+
+DATABASE_URL = os.environ.get("DATABASE_URL") or "sqlite:///database.db"
+class Config(object):
+    SQLALCHEMY_DATABASE_URI = DATABASE_URL
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 IST = pytz.timezone('Asia/Kolkata')
 
