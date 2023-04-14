@@ -9,6 +9,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/?'
 db = SQLAlchemy(app)
 
+DATABASE_URL = "sqlite:///database.db"
+
 IST = pytz.timezone('Asia/Kolkata')
 
 class User(db.Model):
@@ -245,6 +247,6 @@ def contact():
 @app.before_first_request
 def create_tables():
     db.create_all()
-    
+
 if __name__ == '__main__':
     app.run(debug=True)
