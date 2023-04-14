@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>Task Manager</title>
+{% endblock title %}
+
+{% block body %}
+
+{% if 'user' in session %}
+<h1 class="register-title">Add Your Tasks</h1>
+<form class="add-todo-form" action="/" method="POST">
+   <label class="todo-form-item" for="task">Task</label>
+   <input class="todo-form-item" type="text" id="task" name="task" placeholder="Enter your Task" required>
+   <label class="todo-form-item" for="desc">Description</label>
+   <input class="todo-form-item" type="text" name="desc" id="desc" placeholder="Your task description here" required>
+   <input class="todo-form-item" type="submit" value="Submit">
+</form>
+<div class="table-box">
+   <h3>Your Tasks</h3>
+   {% if alltodo|length == 0 %}
+   <div class="alert-box">
+      <div id='alert-icon'>
+         <i class="fas fa-info-circle"></i>
+      </div>
+      <div id="alert-content">
+         No Tasks found. Add your first Task now!
+      </div>
+   </div>
+
+   {% else %}
+   <table class="table">
+      <thead>
+         <tr>
+            <th scope="col">SNo.</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Time</th>
+            <th scope="col">Actions</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for todo in alltodo %}
+         <tr>
+            <td><strong>{{ loop.index }}</strong></td>
+            <td>{{ todo.task }}</td>
+            <td>{{ todo.desc }}</td>
+            <td>{{ todo.date_created }}</td>
+            <td>
+               <div class="d">
+               <a href="/delete/{{ todo.sno }}" type="button" class="btn btn-red">Delete</button>
+                  <a href="/update/{{ todo.sno }}" type="button" class="btn btn-blue">Update</button>
+            </div></td>
+         </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+
+   {% endif %}
+</div>
+{% else %}
+   <div class="welcome-message">
+      <h1>Welcome to Task Manager</h1>
+      <h2>Please Login to get started... </h2>
+   </div>
+{% endif %}
+
+{% endblock body %}

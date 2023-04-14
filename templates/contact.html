@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Contact</title>
+{% endblock title %}
+
+{% block body %}
+<h1 class="register-title">Contact Form</h1>
+<form class="add-todo-form" action="/contact" method="POST">
+    <label class="todo-form-item" for="username">Username</label>
+    <input class="todo-form-item" type="text" id="username" name="username" placeholder="Enter your Username" required>
+    <label class="todo-form-item" for="email">Email</label>
+    <input class="todo-form-item" type="email" name="email" id="email" placeholder="example@gmail.com" required>
+    <label class="todo-form-item" for="subject">Subject</label>
+    <input class="todo-form-item" type="text" name="subject" id="subject" placeholder="Subject" required>
+    <label class="todo-form-item" for="message">Message</label>
+    <input class="todo-form-item" type="text" id="message" name="message" placeholder="Write your message here..">
+    <input class="todo-form-item" type="submit" value="Submit">
+ </form>
+{% endblock body %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Update Task</title>
+{% endblock title %}
+{% block body %}
+    
+<h1 class="register-title">Update Your Task</h1>
+<form class="add-todo-form" action="/update/{{ todo.sno }} " method="POST">
+   <label class="todo-form-item" for="task">Task</label>
+   <input class="todo-form-item" type="text" id="task" name="task" placeholder="Enter your Task" value="{{ todo.task }}" required>
+   <label class="todo-form-item" for="desc">Description</label>
+   <input class="todo-form-item" type="text" name="desc" id="desc" placeholder="Your task description here" value="{{ todo.desc}}" required>
+   <input class="todo-form-item" type="submit" value="Update">
+</form>
+
+{% endblock body %}
